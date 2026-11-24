@@ -6,11 +6,14 @@
 <title>في صحبة رسول الله ﷺ</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1f6fb2">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600&display=swap">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <style>
-:root{--bg:#e8f3fc;--surface:#fff;--ink:#10263a;--mute:#4f6a80;--green:#1d62a3;--hd:#1f6fb2;--gold:#6f4a0c;--line:#c3d9ec;--fs:19px;--fh:'Linotype Riyadh','Riyadh','AGA Riyadh','Al Qadi','Al-Qadi','Amiri',serif;--fb:'Lotus Linotype','Lotus','Cairo','Segoe UI',Tahoma,sans-serif;
+@font-face{font-family:'Rakkas';src:url(fonts/rakkas-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Scheherazade New';src:url(fonts/scheherazade-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Scheherazade New';src:url(fonts/scheherazade-600.woff2) format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Scheherazade New';src:url(fonts/scheherazade-700.woff2) format('woff2');font-weight:700;font-display:swap}
+:root{--bg:#e8f3fc;--surface:#fff;--ink:#10263a;--mute:#4f6a80;--green:#1d62a3;--hd:#1f6fb2;--gold:#6f4a0c;--line:#c3d9ec;--fs:19px;--fh:'Rakkas','Amiri',serif;--fb:'Scheherazade New','Noto Naskh Arabic',Tahoma,serif;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156}}
 :root[data-theme="dark"]{--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156}
@@ -32,7 +35,7 @@ h3.grp{font:400 1.7rem var(--fh);color:var(--gold);margin:26px 0 8px;border-bott
 .card small{display:block;color:var(--mute);font-weight:400;font-size:.8rem;line-height:1.5}
 .card.soon{opacity:.6;border-style:dashed;cursor:default}
 .flash{border-inline-start:5px solid var(--gold)}
-article{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font:400 var(--fs)/2 var(--fb)}
+article{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font:700 var(--fs)/2 var(--fb)}
 article h2{font:400 1.6em var(--fh);color:var(--green);margin:0 0 8px}
 article p{margin:.5em 0}
 article li{margin:.3em 0}
