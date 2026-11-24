@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>في صحبة رسول الله ﷺ</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1f6fb2">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600&display=swap">
+<style>
+:root{--bg:#e8f3fc;--surface:#fff;--ink:#10263a;--mute:#4f6a80;--green:#1d62a3;--hd:#1f6fb2;--gold:#6f4a0c;--line:#c3d9ec;--fs:19px;--fh:'Linotype Riyadh','Riyadh','AGA Riyadh','Al Qadi','Al-Qadi','Amiri',serif;--fb:'Lotus Linotype','Lotus','Cairo','Segoe UI',Tahoma,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156}}
+:root[data-theme="dark"]{--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fb);line-height:1.9}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--hd);color:#fff;display:flex;align-items:center;gap:8px;padding:10px 14px;z-index:5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hd);z-index:10}
+header h1{flex:1;margin:0;font:400 1.25rem var(--fh)}
+header button{background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:6px;min-width:38px;height:36px;font:inherit;cursor:pointer}
+header button:focus-visible,.card:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+main{max-width:720px;margin:0 auto;padding:18px 16px 40px}
+.hero{padding:26px 8px 18px;text-align:center}
+.hero h2{font:400 2.2rem var(--fh);color:var(--green);margin:0 0 6px}
+.hero p{margin:0;color:var(--mute)}
+h3.grp{font:400 1.7rem var(--fh);color:var(--gold);margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}.grid.g4{grid-template-columns:repeat(4,1fr)}
+.card{display:block;text-align:center;font-size:.95rem;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 5px;color:var(--ink);text-decoration:none;font-weight:600}
+.card small{display:block;color:var(--mute);font-weight:400;font-size:.8rem;line-height:1.5}
+.card.soon{opacity:.6;border-style:dashed;cursor:default}
+.flash{border-inline-start:5px solid var(--gold)}
+article{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font:400 var(--fs)/2 var(--fb)}
+article h2{font:400 1.6em var(--fh);color:var(--green);margin:0 0 8px}
+article p{margin:.5em 0}
+article li{margin:.3em 0}
+.src{font:400 .8rem 'Cairo',sans-serif;color:var(--mute);margin-top:14px;padding-top:8px;border-top:1px dashed var(--line)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.nav a{flex:1;text-align:center}
+.note{font-size:.8rem;color:var(--mute);text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<header>
+<h1 id="ttl">في صحبة رسول الله ﷺ</h1>
+<button id="inc" aria-label="تكبير الخط">أ+</button>
+<button id="dec" aria-label="تصغير الخط">أ−</button>
+<button id="thm" aria-label="تبديل الوضع">◐</button>
+</header>
+<main id="app"></main>
+<script>
+var S=[
+{id:"nasab",t:"النسب الشريف",d:"من هو؟ وآباؤه",b:"<p>هو محمد بن عبد الله بن عبد المطلب بن هاشم، من قريش، وقريش من ولد إسماعيل بن إبراهيم عليهما السلام. أمه آمنة بنت وهب من بني زهرة.</p><p>كان بنو هاشم من أشرف بيوت قريش، وكان جده عبد المطلب سيد مكة وصاحب سقاية الحاج.</p>",s:"ابن هشام: السيرة النبوية؛ ابن سعد: الطبقات الكبرى."},
+{id:"mawlid",t:"المولد والنشأة",d:"اليتم والطفولة والصبا",b:"<p>وُلد ﷺ بمكة في عام الفيل يوم الاثنين من شهر ربيع الأول، ويوافق نحو سنة 570م، والمشهور أنه الثاني عشر منه، وفي تحديد اليوم خلاف بين أهل العلم.</p><p>توفي أبوه عبد الله قبل ولادته أو بعدها بقليل على اختلاف الروايات، فنشأ يتيمًا. وأرضعته حليمة السعدية في بادية بني سعد.</p><p>وتوفيت أمه آمنة بالأبواء وهو في السادسة، فكفله جده عبد المطلب، ولما توفي كفله عمه أبو طالب. ورعى الغنم، وعُرف في شبابه بالصادق الأمين.</p>",s:"ابن هشام؛ ابن سعد؛ المباركفوري: الرحيق المختوم."},
+{id:"zawaj",t:"الزواج",d:"خديجة رضي الله عنها",b:"<p>تزوج ﷺ خديجة بنت خويلد رضي الله عنها وهو في الخامسة والعشرين، وكانت تاجرة شريفة عُرفت بالطاهرة. وظلت زوجته الوحيدة حتى توفيت قبل الهجرة بثلاث سنوات تقريبًا، وأنجبت له أولاده كلهم سوى إبراهيم.</p>",s:"ابن هشام؛ ابن سعد."},
+{id:"bietha",t:"البعثة",d:"غار حراء والدعوة",b:"<p>لما بلغ الأربعين نزل عليه جبريل عليه السلام في غار حراء بأول القرآن: ﴿اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ﴾.</p><p>دعا سرًّا نحو ثلاث سنين، ثم أُمر بالجهر، فلقي من قريش أذى شديدًا، وصبر هو وأصحابه، وهاجر بعضهم إلى الحبشة.</p>",s:"صحيح البخاري: بدء الوحي؛ ابن هشام."},
+{id:"hijra",t:"الهجرة",d:"من مكة إلى المدينة",b:"<p>بعد بيعتي العقبة هاجر ﷺ مع أبي بكر الصديق رضي الله عنه إلى المدينة، واختبآ في غار ثور ثلاثة أيام. ومن هذه الهجرة بدأ التاريخ الهجري، وبنى في المدينة المسجد وآخى بين المهاجرين والأنصار.</p>",s:"صحيح البخاري: باب هجرة النبي ﷺ؛ ابن هشام."},
+{id:"ghazawat",t:"الغزوات",d:"أبرز المعارك",b:"<ul><li>بدر (2هـ): أول لقاء كبير مع قريش، وانتهى بنصر المسلمين.</li><li>أُحد (3هـ).</li><li>الخندق (5هـ): حفر المسلمون خندقًا حول المدينة.</li><li>صلح الحديبية (6هـ).</li><li>فتح مكة (8هـ).</li><li>حنين (8هـ) وتبوك (9هـ).</li></ul><p>وفي عدد غزواته ﷺ خلاف بحسب ما يُعدّ من السرايا والبعوث.</p>",s:"ابن هشام؛ صحيح البخاري: كتاب المغازي."},
+{id:"awlad",t:"الأبناء والبنات",d:"سبعة من الأولاد",b:"<p>من خديجة: القاسم وعبد الله (ويُلقب بالطيب والطاهر)، وزينب ورقية وأم كلثوم وفاطمة رضي الله عنهن. ومن مارية القبطية: إبراهيم. وكلهم توفوا في حياته ﷺ إلا فاطمة، فقد توفيت بعده بنحو ستة أشهر.</p>",s:"ابن سعد: الطبقات الكبرى."},
+{id:"azwaj",t:"أمهات المؤمنين",d:"زوجاته رضي الله عنهن",b:"<p>المشهور أنه تزوج إحدى عشرة: خديجة، وسودة، وعائشة، وحفصة، وزينب بنت خزيمة، وأم سلمة، وزينب بنت جحش، وجويرية، وأم حبيبة، وصفية، وميمونة رضي الله عنهن.</p><p>توفيت خديجة وزينب بنت خزيمة في حياته، وتوفي ﷺ عن تسع.</p>",s:"ابن سعد؛ ابن هشام."},
+{id:"ashab",t:"أهم الصحابة",d:"الخلفاء الراشدون وغيرهم",b:"<p>أبو بكر الصديق، وعمر بن الخطاب، وعثمان بن عفان، وعلي بن أبي طالب: الخلفاء الراشدون رضي الله عنهم. ومن بقية العشرة المبشرين بالجنة: طلحة، والزبير، وعبد الرحمن بن عوف، وسعد بن أبي وقاص، وسعيد بن زيد، وأبو عبيدة بن الجراح. ومن القادة: خالد بن الوليد، وعمرو بن العاص.</p>",s:"ابن حجر: الإصابة؛ الترمذي: مناقب العشرة."},
+{id:"wafat",t:"الوفاة",d:"الرفيق الأعلى",b:"<p>توفي ﷺ يوم الاثنين من ربيع الأول سنة 11هـ، وعمره ثلاث وستون سنة، في بيت عائشة رضي الله عنها، ودُفن في حجرتها، وهي اليوم داخل المسجد النبوي.</p>",s:"صحيح البخاري: كتاب المغازي؛ ابن سعد."}
+];
+var app=document.getElementById('app'),ttl=document.getElementById('ttl'),root=document.documentElement,fs=19;
+function sv(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function ld(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function setFs(n){fs=Math.max(15,Math.min(30,n));root.style.setProperty('--fs',fs+'px');sv('fs',fs)}
+var f0=parseInt(ld('fs'),10);if(f0)setFs(f0);
+var t0=ld('th');if(t0)root.setAttribute('data-theme',t0);
+document.getElementById('inc').onclick=function(){setFs(fs+2)};
+document.getElementById('dec').onclick=function(){setFs(fs-2)};
+document.getElementById('thm').onclick=function(){var d=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);var n=d?'light':'dark';root.setAttribute('data-theme',n);sv('th',n)};
+function home(){
+var h='<div class="hero"><h2>في صحبة رسول الله ﷺ</h2><p>تعريف موجز بسيرته العطرة، ثم الحكاية من أولها</p></div>';
+h+='<h3 class="grp">المدخل الموجز</h3>';
+[[0,4,'g4'],[4,7,''],[7,10,'']].forEach(function(r){h+='<div class="grid '+r[2]+'">';S.slice(r[0],r[1]).forEach(function(x){h+='<a class="card" href="#'+x.id+'">'+x.t+'<small>'+x.d+'</small></a>'});h+='</div>'});
+h+='<h3 class="grp">الحكاية من البداية</h3><div class="card soon flash">السيرة المفصلة<small>تُبنى في المراحل القادمة</small></div>';
+h+='<h3 class="grp">الأركان</h3><div class="grid"><div class="card soon">ركن الأطفال<small>أناشيد وحوارات</small></div><div class="card soon">ركن المرأة<small>أمهات المؤمنين ونساء الصحابة</small></div><div class="card soon">ركن الشباب<small>سير شباب الصحابة</small></div></div>';
+h+='<p class="note">نموذج أولي للمراجعة: المحتوى مختصر وسيُفصَّل ويُوثَّق في المراحل التالية.</p>';
+return h}
+function page(i){var x=S[i],p=S[i-1],n=S[i+1];
+return '<article><h2>'+x.t+'</h2>'+x.b+'<div class="src">المصادر: '+x.s+'</div></article><div class="nav">'+(p?'<a class="card" href="#'+p.id+'">السابق: '+p.t+'</a>':'')+'<a class="card" href="#">القائمة</a>'+(n?'<a class="card" href="#'+n.id+'">التالي: '+n.t+'</a>':'')+'</div>'}
+function route(){var id=location.hash.slice(1),i=S.findIndex(function(x){return x.id===id});
+if(i<0){app.innerHTML=home();ttl.textContent='في صحبة رسول الله ﷺ'}else{app.innerHTML=page(i);ttl.textContent=S[i].t}
+window.scrollTo(0,0)}
+window.addEventListener('hashchange',route);route();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
+</script>
+</body>
+</html>
