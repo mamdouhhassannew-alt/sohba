@@ -13,10 +13,10 @@
 @font-face{font-family:'Scheherazade New';src:url(fonts/scheherazade-400.woff2) format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'Scheherazade New';src:url(fonts/scheherazade-600.woff2) format('woff2');font-weight:600;font-display:swap}
 @font-face{font-family:'Scheherazade New';src:url(fonts/scheherazade-700.woff2) format('woff2');font-weight:700;font-display:swap}
-:root{--bg:#e8f3fc;--surface:#fff;--ink:#10263a;--mute:#4f6a80;--green:#1d62a3;--hd:#1f6fb2;--gold:#6f4a0c;--line:#c3d9ec;--fs:19px;--fh:'Rakkas','Amiri',serif;--fb:'Scheherazade New','Noto Naskh Arabic',Tahoma,serif;
+:root{--bg:#e8f3fc;--surface:#fff;--ink:#10263a;--mute:#4f6a80;--green:#1d62a3;--hd:#1f6fb2;--gold:#6f4a0c;--line:#c3d9ec;--frame:#8db6dc;--fs:19px;--fh:'Rakkas','Amiri',serif;--fb:'Scheherazade New','Noto Naskh Arabic',Tahoma,serif;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156}}
-:root[data-theme="dark"]{--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156;--frame:#4a7399}}
+:root[data-theme="dark"]{--bg:#0e1a26;--surface:#162636;--ink:#e6f0f8;--mute:#9bb4c8;--green:#7ab8ea;--hd:#1b4f7d;--gold:#e0b45a;--line:#2a4156;--frame:#4a7399}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--fb);line-height:1.9}
@@ -30,12 +30,16 @@ main{max-width:720px;margin:0 auto;padding:18px 16px 40px}
 .hero h2{font:400 2.2rem var(--fh);color:var(--green);margin:0 0 6px}
 .hero p{margin:0;color:var(--mute)}
 h3.grp{font:400 1.7rem var(--fh);color:var(--gold);margin:26px 0 8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.frame{border:1.5px solid var(--frame);border-radius:20px;padding:10px 10px 2px}.frame>.card{margin-bottom:8px}.frame>:last-child{margin-bottom:8px}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}.grid.g4{grid-template-columns:repeat(4,1fr)}
 .card{display:block;text-align:center;font-size:.95rem;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 5px;color:var(--ink);text-decoration:none;font-weight:600}
 .card small{display:block;color:var(--mute);font-weight:400;font-size:.8rem;line-height:1.5}
 .card.soon{opacity:.6;border-style:dashed;cursor:default}
 .flash{border-inline-start:5px solid var(--gold)}
 article{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font:700 var(--fs)/2 var(--fb)}
+.srch input{width:100%;padding:12px 14px;border:1.5px solid var(--frame);border-radius:14px;font:inherit;background:var(--surface);color:var(--ink);margin:6px 0 4px}
+a.lnk{color:var(--green);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:5px;font-weight:700}
+.bc{font:400 .9rem var(--fb);color:var(--mute);margin:0 0 12px}.bc a{color:var(--green);text-decoration:none;font-weight:700}
 article h2{font:400 1.6em var(--fh);color:var(--green);margin:0 0 8px}
 article p{margin:.5em 0}
 article li{margin:.3em 0}
@@ -53,6 +57,8 @@ article li{margin:.3em 0}
 <button id="thm" aria-label="تبديل الوضع">◐</button>
 </header>
 <main id="app"></main>
+<script src="chapters.js"></script>
+<script src="people.js"></script>
 <script>
 var S=[
 {id:"nasab",t:"النسب الشريف",d:"من هو؟ وآباؤه",b:"<p>هو محمد بن عبد الله بن عبد المطلب بن هاشم، من قريش، وقريش من ولد إسماعيل بن إبراهيم عليهما السلام. أمه آمنة بنت وهب من بني زهرة.</p><p>كان بنو هاشم من أشرف بيوت قريش، وكان جده عبد المطلب سيد مكة وصاحب سقاية الحاج.</p>",s:"ابن هشام: السيرة النبوية؛ ابن سعد: الطبقات الكبرى."},
@@ -60,11 +66,12 @@ var S=[
 {id:"zawaj",t:"الزواج",d:"خديجة رضي الله عنها",b:"<p>تزوج ﷺ خديجة بنت خويلد رضي الله عنها وهو في الخامسة والعشرين، وكانت تاجرة شريفة عُرفت بالطاهرة. وظلت زوجته الوحيدة حتى توفيت قبل الهجرة بثلاث سنوات تقريبًا، وأنجبت له أولاده كلهم سوى إبراهيم.</p>",s:"ابن هشام؛ ابن سعد."},
 {id:"bietha",t:"البعثة",d:"غار حراء والدعوة",b:"<p>لما بلغ الأربعين نزل عليه جبريل عليه السلام في غار حراء بأول القرآن: ﴿اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ﴾.</p><p>دعا سرًّا نحو ثلاث سنين، ثم أُمر بالجهر، فلقي من قريش أذى شديدًا، وصبر هو وأصحابه، وهاجر بعضهم إلى الحبشة.</p>",s:"صحيح البخاري: بدء الوحي؛ ابن هشام."},
 {id:"hijra",t:"الهجرة",d:"من مكة إلى المدينة",b:"<p>بعد بيعتي العقبة هاجر ﷺ مع أبي بكر الصديق رضي الله عنه إلى المدينة، واختبآ في غار ثور ثلاثة أيام. ومن هذه الهجرة بدأ التاريخ الهجري، وبنى في المدينة المسجد وآخى بين المهاجرين والأنصار.</p>",s:"صحيح البخاري: باب هجرة النبي ﷺ؛ ابن هشام."},
-{id:"ghazawat",t:"الغزوات",d:"أبرز المعارك",b:"<ul><li>بدر (2هـ): أول لقاء كبير مع قريش، وانتهى بنصر المسلمين.</li><li>أُحد (3هـ).</li><li>الخندق (5هـ): حفر المسلمون خندقًا حول المدينة.</li><li>صلح الحديبية (6هـ).</li><li>فتح مكة (8هـ).</li><li>حنين (8هـ) وتبوك (9هـ).</li></ul><p>وفي عدد غزواته ﷺ خلاف بحسب ما يُعدّ من السرايا والبعوث.</p>",s:"ابن هشام؛ صحيح البخاري: كتاب المغازي."},
+{id:"ghazawat",t:"الغزوات",d:"أبرز المعارك",b:"<ul><li><a class='lnk' href='#c15'>بدر</a> (2هـ): أول لقاء كبير مع قريش، وانتهى بنصر المسلمين.</li><li><a class='lnk' href='#c16'>أُحد</a> (3هـ).</li><li><a class='lnk' href='#c17'>الخندق</a> (5هـ): حفر المسلمون خندقًا حول المدينة.</li><li><a class='lnk' href='#c18'>صلح الحديبية</a> (6هـ).</li><li><a class='lnk' href='#c19'>فتح مكة</a> (8هـ).</li><li><a class='lnk' href='#c20'>حنين</a> (8هـ) و<a class='lnk' href='#c20'>تبوك</a> (9هـ).</li></ul><p>وفي عدد غزواته ﷺ خلاف بحسب ما يُعدّ من السرايا والبعوث.</p>",s:"ابن هشام؛ صحيح البخاري: كتاب المغازي."},
 {id:"awlad",t:"الأبناء والبنات",d:"سبعة من الأولاد",b:"<p>من خديجة: القاسم وعبد الله (ويُلقب بالطيب والطاهر)، وزينب ورقية وأم كلثوم وفاطمة رضي الله عنهن. ومن مارية القبطية: إبراهيم. وكلهم توفوا في حياته ﷺ إلا فاطمة، فقد توفيت بعده بنحو ستة أشهر.</p>",s:"ابن سعد: الطبقات الكبرى."},
-{id:"azwaj",t:"أمهات المؤمنين",d:"زوجاته رضي الله عنهن",b:"<p>المشهور أنه تزوج إحدى عشرة: خديجة، وسودة، وعائشة، وحفصة، وزينب بنت خزيمة، وأم سلمة، وزينب بنت جحش، وجويرية، وأم حبيبة، وصفية، وميمونة رضي الله عنهن.</p><p>توفيت خديجة وزينب بنت خزيمة في حياته، وتوفي ﷺ عن تسع.</p>",s:"ابن سعد؛ ابن هشام."},
-{id:"ashab",t:"أهم الصحابة",d:"الخلفاء الراشدون وغيرهم",b:"<p>أبو بكر الصديق، وعمر بن الخطاب، وعثمان بن عفان، وعلي بن أبي طالب: الخلفاء الراشدون رضي الله عنهم. ومن بقية العشرة المبشرين بالجنة: طلحة، والزبير، وعبد الرحمن بن عوف، وسعد بن أبي وقاص، وسعيد بن زيد، وأبو عبيدة بن الجراح. ومن القادة: خالد بن الوليد، وعمرو بن العاص.</p>",s:"ابن حجر: الإصابة؛ الترمذي: مناقب العشرة."},
-{id:"wafat",t:"الوفاة",d:"الرفيق الأعلى",b:"<p>توفي ﷺ يوم الاثنين من ربيع الأول سنة 11هـ، وعمره ثلاث وستون سنة، في بيت عائشة رضي الله عنها، ودُفن في حجرتها، وهي اليوم داخل المسجد النبوي.</p>",s:"صحيح البخاري: كتاب المغازي؛ ابن سعد."}
+{id:"azwaj",t:"أمهات المؤمنين",d:"زوجاته رضي الله عنهن",b:"<p>المشهور أنه تزوج إحدى عشرة: خديجة، وسودة، و<a class='lnk' href='#aisha'>عائشة</a>، وحفصة، وزينب بنت خزيمة، وأم سلمة، وزينب بنت جحش، وجويرية، وأم حبيبة، وصفية، وميمونة رضي الله عنهن.</p><p>توفيت خديجة وزينب بنت خزيمة في حياته، وتوفي ﷺ عن تسع.</p>",s:"ابن سعد؛ ابن هشام."},
+{id:"ashab",t:"أهم الصحابة",d:"الخلفاء الراشدون وغيرهم",b:"<p><a class='lnk' href='#abubakr'>أبو بكر الصديق</a>، و<a class='lnk' href='#umar'>عمر بن الخطاب</a>، و<a class='lnk' href='#uthman'>عثمان بن عفان</a>، و<a class='lnk' href='#ali'>علي بن أبي طالب</a>: الخلفاء الراشدون رضي الله عنهم. ومن بقية العشرة المبشرين بالجنة: طلحة، والزبير، وعبد الرحمن بن عوف، و<a class='lnk' href='#saad'>سعد بن أبي وقاص</a>، وسعيد بن زيد، و<a class='lnk' href='#ubayda'>أبو عبيدة بن الجراح</a>. ومن القادة: <a class='lnk' href='#khalid'>خالد بن الوليد</a>، و<a class='lnk' href='#amr'>عمرو بن العاص</a>.</p>",s:"ابن حجر: الإصابة؛ الترمذي: مناقب العشرة."},
+{id:"wafat",t:"الوفاة",d:"الرفيق الأعلى",b:"<p>توفي ﷺ يوم الاثنين من ربيع الأول سنة 11هـ، وعمره ثلاث وستون سنة، في بيت <a class='lnk' href='#aisha'>عائشة</a> رضي الله عنها، ودُفن في حجرتها، وهي اليوم داخل المسجد النبوي.</p>",s:"صحيح البخاري: كتاب المغازي؛ ابن سعد."},
+{id:"aisha",parent:"azwaj",t:"السيدة عائشة",d:"الصديقة بنت الصديق",b:"<p>هي عائشة بنت أبي بكر الصديق وأم رومان رضي الله عنهم، تُلقَّب بالصديقة بنت الصديق، وتُكنى أم عبد الله. نشأت في بيت الإيمان بمكة، وكان أبوها أقرب الناس إلى النبي ﷺ.</p><p>عقد عليها النبي ﷺ بمكة بعد وفاة خديجة رضي الله عنها، وبنى بها في المدينة، وكانت صغيرة السن حينئذٍ كما في صحيح البخاري، ولم يتزوج ﷺ بكرًا غيرها.</p><p>ومن أشهر ما مرّ بها حادثة الإفك، فنزلت براءتها من السماء في سورة النور: ﴿إِنَّ الَّذِينَ جَاءُوا بِالْإِفْكِ عُصْبَةٌ مِنْكُمْ﴾.</p><p>وكانت من أعلم الناس، يرجع إليها كبار الصحابة في الفقه والحديث، ويُروى لها نحو ألفين ومئتي حديث، فهي من المكثرين من الرواية.</p><p>ولما اشتد المرض بالنبي ﷺ استأذن أزواجه أن يُمرَّض في بيتها فأذنّ له، فتوفي في بيتها ودُفن في حجرتها. وتوفيت بالمدينة سنة 57 أو 58هـ على خلاف، ودُفنت بالبقيع.</p>",see:"انظر أيضًا: <a class='lnk' href='#wafat'>الوفاة</a> · <a class='lnk' href='#azwaj'>أمهات المؤمنين</a>",s:"صحيح البخاري: كتاب النكاح وكتاب المغازي؛ الذهبي: سير أعلام النبلاء؛ ابن حجر: الإصابة."}
 ];
 var app=document.getElementById('app'),ttl=document.getElementById('ttl'),root=document.documentElement,fs=19;
 function sv(k,v){try{localStorage.setItem(k,v)}catch(e){}}
@@ -77,16 +84,33 @@ document.getElementById('dec').onclick=function(){setFs(fs-2)};
 document.getElementById('thm').onclick=function(){var d=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);var n=d?'light':'dark';root.setAttribute('data-theme',n);sv('th',n)};
 function home(){
 var h='<div class="hero"><h2>في صحبة رسول الله ﷺ</h2><p>تعريف موجز بسيرته العطرة، ثم الحكاية من أولها</p></div>';
-h+='<h3 class="grp">المدخل الموجز</h3>';
-[[0,4,'g4'],[4,7,''],[7,10,'']].forEach(function(r){h+='<div class="grid '+r[2]+'">';S.slice(r[0],r[1]).forEach(function(x){h+='<a class="card" href="#'+x.id+'">'+x.t+'<small>'+x.d+'</small></a>'});h+='</div>'});
-h+='<h3 class="grp">الحكاية من البداية</h3><div class="card soon flash">السيرة المفصلة<small>تُبنى في المراحل القادمة</small></div>';
-h+='<h3 class="grp">الأركان</h3><div class="grid"><div class="card soon">ركن الأطفال<small>أناشيد وحوارات</small></div><div class="card soon">ركن المرأة<small>أمهات المؤمنين ونساء الصحابة</small></div><div class="card soon">ركن الشباب<small>سير شباب الصحابة</small></div></div>';
+h+='<h3 class="grp">المدخل الموجز</h3><div class="frame">';
+[[0,4,'g4'],[4,7,''],[7,10,'']].forEach(function(r){h+='<div class="grid '+r[2]+'">';S.slice(r[0],r[1]).forEach(function(x){h+='<a class="card" href="#'+x.id+'">'+x.t+'<small>'+x.d+'</small></a>'});h+='</div>'});h+='</div>';
+h+='<h3 class="grp">الحكاية من البداية</h3><div class="frame"><a class="card flash" href="#hekaya">السيرة المفصلة<small>الحكاية من أولها إلى وفاته ﷺ</small></a></div>';
+h+='<h3 class="grp">الأركان</h3><div class="frame"><div class="grid"><a class="card" href="#kids">ركن الأطفال<small>أناشيد وحوارات</small></a><a class="card" href="#women">ركن المرأة<small>أمهات المؤمنين ونساء الصحابة</small></a><a class="card" href="#youth">ركن الشباب<small>سير شباب الصحابة</small></a></div></div>';
 h+='<p class="note">نموذج أولي للمراجعة: المحتوى مختصر وسيُفصَّل ويُوثَّق في المراحل التالية.</p>';
 return h}
-function page(i){var x=S[i],p=S[i-1],n=S[i+1];
-return '<article><h2>'+x.t+'</h2>'+x.b+'<div class="src">المصادر: '+x.s+'</div></article><div class="nav">'+(p?'<a class="card" href="#'+p.id+'">السابق: '+p.t+'</a>':'')+'<a class="card" href="#">القائمة</a>'+(n?'<a class="card" href="#'+n.id+'">التالي: '+n.t+'</a>':'')+'</div>'}
+function page(i){var x=S[i],par=x.parent?S.find(function(y){return y.id===x.parent}):null,p=S[i-1],n=S[i+1],main=i<10;
+var bc='<div class="bc"><a href="#">الرئيسية</a>'+(par?' ‹ <a href="#'+par.id+'">'+par.t+'</a>':'')+' ‹ '+x.t+'</div>';
+var nav=main?(p?'<a class="card" href="#'+p.id+'">السابق: '+p.t+'</a>':'')+'<a class="card" href="#">القائمة</a>'+((n&&i<9)?'<a class="card" href="#'+n.id+'">التالي: '+n.t+'</a>':''):'<a class="card" href="#'+par.id+'">العودة إلى '+par.t+'</a><a class="card" href="#">القائمة</a>';
+return bc+'<article><h2>'+x.t+'</h2>'+x.b+(x.see?'<div class="see">'+x.see+'</div>':'')+det(x.id)+pl(x.id)+'<div class="src">المصادر: '+x.s+'</div></article><div class="nav">'+nav+'</div>'}
+function det(id){var a=(D[id]||[]).filter(function(n){return C[n]});return a.length?'<div class="see">للتفصيل: '+a.map(function(n){return '<a class="lnk" href="#c'+n+'">'+T[n]+'</a>'}).join(' · ')+'</div>':''}
+function list(){var h='<div class="bc"><a href="#">الرئيسية</a> ‹ السيرة المفصلة</div><div class="hero"><h2>السيرة المفصلة</h2><p>الحكاية من أولها إلى وفاته ﷺ</p></div>';BABS.forEach(function(b){h+='<h3 class="grp">'+b[0]+'</h3><div class="frame">';for(var n=b[1];n<=b[2];n++){h+=C[n]?'<a class="card" href="#c'+n+'">'+n+'. '+T[n]+'</a>':'<div class="card soon">'+n+'. '+T[n]+'<small>قريبًا</small></div>'}h+='</div>'});return h}
+function chap(n){var x=C[n],p=C[n-1]?n-1:0,q=C[n+1]?n+1:0;return '<div class="bc"><a href="#">الرئيسية</a> ‹ <a href="#hekaya">السيرة المفصلة</a> ‹ '+T[n]+'</div><article><h2>'+n+'. '+T[n]+'</h2>'+x.b+'<div class="src">المصادر: '+x.s+'</div></article><div class="nav">'+(p?'<a class="card" href="#c'+p+'">السابق: '+T[p]+'</a>':'')+'<a class="card" href="#hekaya">الفهرس</a>'+(q?'<a class="card" href="#c'+q+'">التالي: '+T[q]+'</a>':'')+'</div>'}
+function women(){var h='<div class="bc"><a href="#">الرئيسية</a> ‹ ركن المرأة</div><div class="hero"><h2>ركن المرأة</h2><p>أمهات المؤمنين وبنات النبي ﷺ</p></div>';PG.forEach(function(g){h+='<h3 class="grp">'+g[0]+'</h3><div class="frame">';if(g[1]==='azwaj')h+='<a class="card" href="#aisha">السيدة عائشة<small>الصديقة بنت الصديق</small></a>';Object.keys(P).forEach(function(k){if(P[k].g===g[1])h+='<a class="card" href="#'+k+'">'+P[k].t+'<small>'+P[k].d+'</small></a>'});h+='</div>'});return h}
+function youth(){var h='<div class="bc"><a href="#">الرئيسية</a> ‹ ركن الشباب</div><div class="hero"><h2>ركن الشباب</h2><p>سير شباب الصحابة وقادتهم</p></div>';YG.forEach(function(g){h+='<h3 class="grp">'+g[0]+'</h3><div class="frame">';Object.keys(P).forEach(function(k){if(P[k].g===g[1])h+='<a class="card" href="#'+k+'">'+P[k].t+'<small>'+P[k].d+'</small></a>'});h+='</div>'});return h}
+function kids(){var h='<div class="bc"><a href="#">الرئيسية</a> ‹ ركن الأطفال</div><div class="hero"><h2>ركن الأطفال</h2><p>أناشيد وحوارات وحكايات</p></div>';KG.forEach(function(g){h+='<h3 class="grp">'+g[0]+'</h3><div class="frame">';Object.keys(P).forEach(function(k){if(P[k].g===g[1])h+='<a class="card" href="#'+k+'">'+P[k].t+'<small>'+P[k].d+'</small></a>'});h+='</div>'});return h}
+function person(k){var x=P[k],y=YG.some(function(g){return g[1]===x.g}),z=KG.some(function(g){return g[1]===x.g}),cn=y?'ركن الشباب':z?'ركن الأطفال':'ركن المرأة',ch=y?'#youth':z?'#kids':'#women';return '<div class="bc"><a href="#">الرئيسية</a> ‹ <a href="'+ch+'">'+cn+'</a> ‹ '+x.t+'</div><article><h2>'+x.t+'</h2>'+x.b+'<div class="src">المصادر: '+x.s+'</div></article><div class="nav"><a class="card" href="'+ch+'">العودة إلى '+cn+'</a><a class="card" href="#">القائمة</a></div>'}
+function pl(id){var m={azwaj:['azwaj'],awlad:['banat'],ashab:['khulafa','shabab','qadah']},gs=m[id];if(!gs)return '';var a=Object.keys(P).filter(function(k){return gs.indexOf(P[k].g)>=0});return a.length?'<div class="see">صفحات خاصة: '+a.map(function(k){return '<a class="lnk" href="#'+k+'">'+P[k].t+'</a>'}).join(' · ')+'</div>':''}
+var IDX=null;
+function nm(s){return s.replace(/[\u064B-\u065F\u0670\u0640]/g,'').replace(/[إأآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه')}
+function tx(h){return h.replace(/<[^>]+>/g,' ')}
+function idx(){if(IDX)return IDX;IDX=[];S.forEach(function(x){IDX.push({t:x.t,k:'الموجز',h:'#'+x.id,tt:nm(x.t),n:nm(tx(x.b))})});for(var n=1;n<T.length;n++)if(C[n])IDX.push({t:T[n],k:'السيرة المفصلة، فصل '+n,h:'#c'+n,tt:nm(T[n]),n:nm(tx(C[n].b))});Object.keys(P).forEach(function(k){var x=P[k];IDX.push({t:x.t,k:'الأعلام والأركان',h:'#'+k,tt:nm(x.t),n:nm(tx(x.b))})});return IDX}
+function find(q){var w=nm(q).trim().split(/\s+/).filter(Boolean);if(!w.length)return [];var r=[];idx().forEach(function(d){if(w.every(function(a){return d.tt.indexOf(a)>=0||d.n.indexOf(a)>=0}))r.push([w.reduce(function(s,a){return s+(d.tt.indexOf(a)>=0?10:0)},0),d])});r.sort(function(a,b){return b[0]-a[0]});return r.slice(0,20).map(function(x){return x[1]})}
+function bindS(){var q=document.getElementById('q');if(!q)return;q.addEventListener('input',function(){var v=q.value.trim(),res=document.getElementById('res'),hb=document.getElementById('hb');if(!v){res.innerHTML='';hb.style.display='';return}hb.style.display='none';var r=find(v);res.innerHTML=r.length?'<div class="frame">'+r.map(function(d){return '<a class="card" href="'+d.h+'">'+d.t+'<small>'+d.k+'</small></a>'}).join('')+'</div>':'<p class="note">لا نتائج لهذه الكلمة.</p>'})}
 function route(){var id=location.hash.slice(1),i=S.findIndex(function(x){return x.id===id});
-if(i<0){app.innerHTML=home();ttl.textContent='في صحبة رسول الله ﷺ'}else{app.innerHTML=page(i);ttl.textContent=S[i].t}
+var m=/^c(\d+)$/.exec(id);
+if(id==='kids'){app.innerHTML=kids();ttl.textContent='ركن الأطفال'}else if(id==='youth'){app.innerHTML=youth();ttl.textContent='ركن الشباب'}else if(id==='women'){app.innerHTML=women();ttl.textContent='ركن المرأة'}else if(P[id]){app.innerHTML=person(id);ttl.textContent=P[id].t}else if(id==='hekaya'){app.innerHTML=list();ttl.textContent='السيرة المفصلة'}else if(m&&C[+m[1]]){app.innerHTML=chap(+m[1]);ttl.textContent=T[+m[1]]}else if(i<0){app.innerHTML='<div class="srch"><input id="q" type="search" placeholder="ابحث عن اسم أو موضوع…" autocomplete="off"></div><div id="res"></div><div id="hb">'+home()+'</div>';bindS();ttl.textContent='في صحبة رسول الله ﷺ'}else{app.innerHTML=page(i);ttl.textContent=S[i].t}
 window.scrollTo(0,0)}
 window.addEventListener('hashchange',route);route();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){})}
