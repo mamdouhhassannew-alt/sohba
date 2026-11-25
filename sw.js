@@ -1,5 +1,5 @@
-var CACHE = 'sohba-v11';
-var FILES = ['./', 'index.html', 'chapters.js', 'people.js', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-192.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png', 'fonts/rakkas-400.woff2', 'fonts/scheherazade-400.woff2', 'fonts/scheherazade-600.woff2', 'fonts/scheherazade-700.woff2'];
+var CACHE = 'sohba-v13';
+var FILES = ['./', 'index.html', 'chapters.js', 'people.js', 'shamail.js', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-192.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png', 'fonts/rakkas-400.woff2', 'fonts/scheherazade-400.woff2', 'fonts/scheherazade-600.woff2', 'fonts/scheherazade-700.woff2'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }));
   self.skipWaiting();
